@@ -56,7 +56,7 @@ public class HospitalController {
 		}
 		
 		@DeleteMapping("/hospital/{appointmentId}")
-		  void deleteEmployee(@PathVariable long appointmentId) {
+		 public void deleteDoctor(@PathVariable long appointmentId) {
 			hospitalInterface.deleteById(appointmentId);
 		  }
 		
