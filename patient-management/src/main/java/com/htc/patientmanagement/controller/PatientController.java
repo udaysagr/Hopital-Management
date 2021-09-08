@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.htc.patientmanagement.entity.Patient;
@@ -22,7 +23,7 @@ public class PatientController {
 	private PatientServiceInterface patientServiceInterface;
 	
 	@GetMapping("/patients/{id}") 
-	public Patient getPatient(@PathVariable Long id) {
+	public Patient getPatient(@RequestParam Long id) {
 		
 		Patient patient =patientServiceInterface.getPatientById(id);
 		return patient;
@@ -50,4 +51,21 @@ public class PatientController {
 		
 		return patientServiceInterface.getAllPatients();
 	}
+	
+	@GetMapping("/patients/{firstname}")
+	public Patient getByFirstName(@RequestParam String firstname) {
+		return patientServiceInterface.getByFirstName(firstname);
+	}
+	
+	@GetMapping("/patients/{lastname}")
+	public Patient getByLastName(@RequestParam String lastname) {
+		return patientServiceInterface.getByLastName(lastname);
+	}
+	
+	@GetMapping("/patients/{mobilenumber}")
+	public Patient getByMobileNumber(@RequestParam long mobilenumber) {
+		return patientServiceInterface.getByMobilenumber(mobilenumber);
+	}
+	
+	
 }

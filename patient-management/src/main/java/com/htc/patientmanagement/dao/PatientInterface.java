@@ -11,7 +11,7 @@ public interface PatientInterface {
 	public boolean deletepatient(long patientid);
 	public Patient getPatientById(long patientId);
 	public List<Patient> getAllPatients();
-	
+	public Patient getByFirstName(String patientFirstName);
 	
 	/*
 	 * public Patient getByFirstName(String patientFirstName); public Patient

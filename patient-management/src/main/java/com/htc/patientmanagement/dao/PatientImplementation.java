@@ -111,6 +111,24 @@ public class PatientImplementation implements PatientInterface{
 		}
 		 return patientlist;
 	}
+
+	@Override
+	public Patient getByFirstName(String patientFirstName) {
+		// TODO Auto-generated method stub
+		EntityManager entityManager =entityManagerFactory.createEntityManager();
+		 Patient patient=null;
+		 try {
+		    patient= (Patient)entityManager.createQuery("SELECT b.patient_id,b.disease,b.first_name,b.last_name,b.mobile_number FROM patient b WHERE b.first_name=?1").setParameter(1, patientFirstName); //SELECT patient_id,disease,first_name,last_name,mobile_number
+		    		}catch (Exception e) {
+			// TODO: handle exception
+			 e.printStackTrace();
+		}
+		
+		finally {
+			entityManager.close();
+		}
+		return patient;
+	}
 	
 	
 	

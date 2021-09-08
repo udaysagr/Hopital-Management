@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.htc.patientmanagement.dao.PatientInterface;
+import com.htc.patientmanagement.dao.PatientInterfaceRepo;
 import com.htc.patientmanagement.entity.Patient;
 
 @Service
@@ -13,6 +14,9 @@ public class PatientServiceImplementation implements PatientServiceInterface {
 
 	@Autowired
 	private PatientInterface patientInterface;
+	
+	@Autowired
+	private PatientInterfaceRepo patientInterfaceRepo;
 	
 	@Override
 	public boolean addPatient(Patient patient) {
@@ -42,6 +46,24 @@ public class PatientServiceImplementation implements PatientServiceInterface {
 	public List<Patient> getAllPatients() {
 		// TODO Auto-generated method stub
 		return patientInterface.getAllPatients();
+	}
+
+	@Override
+	public Patient getByFirstName(String patientFirstName) {
+		// TODO Auto-generated method stub
+		return patientInterfaceRepo.findByFirstname(patientFirstName);
+	}
+	
+	@Override
+	public Patient getByLastName(String patientLastName) {
+		// TODO Auto-generated method stub
+		return patientInterfaceRepo.findByLastname(patientLastName);
+	}
+
+	@Override
+	public Patient getByMobilenumber(long mobilenumber) {
+		// TODO Auto-generated method stub
+		return patientInterfaceRepo.findByMobilenumber(mobilenumber);
 	}
 
 }
