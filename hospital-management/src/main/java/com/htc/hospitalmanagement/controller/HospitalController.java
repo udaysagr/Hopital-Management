@@ -26,7 +26,7 @@ public class HospitalController {
 
 
 	@PostMapping("/hospital")
-	public ResponseEntity<Object> insertInfo(@RequestBody Hospital hospital)
+	public Hospital insertInfo(@RequestBody Hospital hospital)
 	{
 		return hospitalServices.insert(hospital);
 		
@@ -67,16 +67,5 @@ public class HospitalController {
 			hospitalInterface.deleteById(appointmentId);
 		  }
 		
-
-	
-//	@GetMapping("/hospital/{doctorId}")
-//	public Hospital getDoctorbyId(@PathVariable long doctorId)
-//	{
-//		Hospital doctor=null;
-//		doctor=hospitalInterface.findById(doctorId).get();
-//		return doctor;
-//		
-//	}
-//	
 	
 }
