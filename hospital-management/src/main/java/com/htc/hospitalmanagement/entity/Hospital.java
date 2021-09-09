@@ -2,10 +2,14 @@ package com.htc.hospitalmanagement.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="HOSPITAL")
@@ -18,47 +22,62 @@ public class Hospital implements Serializable{
 	@Id
 	private long doctorId;
 	private String doctorName;
-	private long appointmentId;
-	private LocalDate appointmentDate;
+	private String department;
+	
+	@OneToMany(targetEntity = Appointment.class,cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<Appointment> appointment;
+	
 	public Hospital() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Hospital(long doctorId, String doctorName, long appointmentId, LocalDate appointmentDate) {
+
+	public Hospital(long doctorId, String doctorName, String department) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
-		this.appointmentId = appointmentId;
-		this.appointmentDate = appointmentDate;
+		this.department = department;
 	}
+
+
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
+	}
+
 	public long getDoctorId() {
 		return doctorId;
 	}
+
 	public void setDoctorId(long doctorId) {
 		this.doctorId = doctorId;
 	}
+
 	public String getDoctorName() {
 		return doctorName;
 	}
+
 	public void setDoctorName(String doctorName) {
 		this.doctorName = doctorName;
 	}
-	public long getAppointmentId() {
-		return appointmentId;
+
+	public String getDepartment() {
+		return department;
 	}
-	public void setAppointmentId(long appointmentId) {
-		this.appointmentId = appointmentId;
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public LocalDate getAppointmentDate() {
-		return appointmentDate;
-	}
-	public void setAppointmentDate(LocalDate appointmentDate) {
-		this.appointmentDate = appointmentDate;
-	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(appointmentId, doctorId);
+		return Objects.hash(doctorId);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,11 +87,12 @@ public class Hospital implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Hospital other = (Hospital) obj;
-		return appointmentId == other.appointmentId && doctorId == other.doctorId;
+		return doctorId == other.doctorId;
 	}
+
 	@Override
 	public String toString() {
-		return "Hospital [doctorId=" + doctorId + ", doctorName=" + doctorName + ", appointmentId=" + appointmentId
-				+ ", appointmentDate=" + appointmentDate + "]";
+		return "Hospital [doctorId=" + doctorId + ", doctorName=" + doctorName + ", department=" + department + "]";
 	}
+	
 }

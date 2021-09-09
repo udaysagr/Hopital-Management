@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Hospital implements Serializable {
+public class Review implements Serializable {
 
 	/**
 	 * 
@@ -63,7 +63,7 @@ public class Hospital implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Hospital other = (Hospital) obj;
+		Review other = (Review) obj;
 		return reviewId == other.reviewId;
 	}
 	@Override
