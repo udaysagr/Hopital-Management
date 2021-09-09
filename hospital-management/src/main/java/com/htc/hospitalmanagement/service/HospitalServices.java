@@ -19,17 +19,11 @@ public class HospitalServices {
 	private AppointmentInterface appointmentInterface;
 
 	@Transactional
-	public ResponseEntity<Object> insert(Hospital hospital) {
-		Hospital hospitalInput = new Hospital();
-
-		hospitalInput.setDoctorId(hospital.getDoctorId());
-		hospitalInput.setDoctorName(hospital.getDoctorName());
-		hospitalInput.setDepartment(hospital.getDepartment());
-		hospitalInput.setAppointment(hospital.getAppointment());
-
-		Hospital insertedInfo = hospitalInterface.save(hospitalInput);
-		return ResponseEntity.accepted().body(insertedInfo);
+	public Hospital insert(Hospital hospital) {
+		Hospital insertedInfo = hospitalInterface.save(hospital);
+		return insertedInfo;
 	}
+	
 	
 
 }
