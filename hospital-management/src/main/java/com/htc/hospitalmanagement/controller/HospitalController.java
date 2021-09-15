@@ -47,6 +47,12 @@ public class HospitalController {
 			return doctor;
 			
 		}
+	 @GetMapping("/hospitals/{doctorId}")
+		public Hospital getBydoctorId(@PathVariable Long doctorId)
+		{
+			return hospitalInterface.findById(doctorId).get();
+			
+		}
 		
 		@PutMapping("/hospital/{appointmentId}")
 		public Hospital updateDoctor(@RequestBody Hospital changes, @PathVariable long appointmentId) {

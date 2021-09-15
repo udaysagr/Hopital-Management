@@ -22,17 +22,15 @@ public class PatientController {
 	@Autowired
 	private PatientServiceInterface patientServiceInterface;
 	
-	@GetMapping("/patients/{id}") 
-	public Patient getPatient(@RequestParam Long id) {
-		
-		Patient patient =patientServiceInterface.getPatientById(id);
-		return patient;
+	@GetMapping("api/patients/{patientId}") 
+	public Patient getPatient(@PathVariable long patientId) {
+	
+		return patientServiceInterface.getPatientById(patientId);
 		
 	}
 	
 	@PostMapping("/patients") 
 	public boolean addPatient(@RequestBody Patient patient) {
-		
 		 return patientServiceInterface.addPatient(patient);
 	}
 	
@@ -52,18 +50,18 @@ public class PatientController {
 		return patientServiceInterface.getAllPatients();
 	}
 	
-	@GetMapping("/patients/{firstname}")
-	public Patient getByFirstName(@RequestParam String firstname) {
+	@GetMapping("/patients/FirstName/{firstname}")
+	public Patient getByFirstName(@PathVariable String firstname) {
 		return patientServiceInterface.getByFirstName(firstname);
 	}
 	
-	@GetMapping("/patients/{lastname}")
-	public Patient getByLastName(@RequestParam String lastname) {
+	@GetMapping("/patients/LastName/{lastname}")
+	public Patient getByLastName(@PathVariable String lastname) {
 		return patientServiceInterface.getByLastName(lastname);
 	}
 	
-	@GetMapping("/patients/{mobilenumber}")
-	public Patient getByMobileNumber(@RequestParam long mobilenumber) {
+	@GetMapping("/patients/MobileNumber/{mobilenumber}")
+	public Patient getByMobileNumber(@PathVariable long mobilenumber) {
 		return patientServiceInterface.getByMobilenumber(mobilenumber);
 	}
 	
